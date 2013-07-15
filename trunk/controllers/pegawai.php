@@ -71,32 +71,12 @@ class pegawai extends CI_Controller {
       $this->load->view("main", $data);
 	 }
 	 
-	 function edit_agenda($id_agenda)
+	 function edit_pegawai($nib)
 	 {
-		  $agenda=$this->agenda_model->ambil_detail_agenda($id_agenda);	
-			$data_konten['id_agenda'] = $agenda->row()->id_agenda;
-      $data_konten['nama_agenda'] = $agenda->row()->nama_agenda;
-      $data_konten['lokasi_agenda'] = $agenda->row()->lokasi_agenda;
-      $tanggal_mulai = explode('-', $agenda->row()->tanggal_mulai);
-			$tanggal_mulai2 = $tanggal_mulai[1].'/'.$tanggal_mulai[2].'/'.$tanggal_mulai[0];
-			$data_konten['tanggal_mulai'] = $tanggal_mulai2;
-      $tanggal_selesai = explode('-', $agenda->row()->tanggal_selesai);
-			$tanggal_selesai2 = $tanggal_selesai[1].'/'.$tanggal_selesai[2].'/'.$tanggal_selesai[0];
-			$data_konten['tanggal_selesai'] = $tanggal_selesai2;
-			$jam_mulai = explode(':', $agenda->row()->jam_mulai);
-			$data_konten['jam_mulai'] = $jam_mulai[0];
-      $jam_selesai = explode(':', $agenda->row()->jam_selesai);
-			$data_konten['jam_selesai'] = $jam_selesai[0];
-			$data_konten['tanggal_upload'] = $agenda->row()->tanggal_upload;
-			$data_konten['status_agenda'] = $agenda->row()->status_agenda;
-      $data_konten['jenis_agenda'] = $agenda->row()->jenis_agenda;
-      $data_konten['link_hasil_liputan'] = $agenda->row()->link_hasil_liputan;
-      $data_konten['catatan_tambahan'] = $agenda->row()->catatan_tambahan;
-      $data_konten['id_organisasi'] = $agenda->row()->id_organisasi;
-     
-			$data["konten"] = $this->load->view("edit_agenda", $data_konten, TRUE);
-			$data["menu"] = 'agenda';
-			$data["sub_menu"] = 'daftar_agenda';
+		  $data_konten['pegawai']=$this->pegawai_model->get_detail_pegawai($nib);
+      $data["konten"] = $this->load->view("edit_pegawai", $data_konten, TRUE);
+			$data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'daftar_pegawai';
       $this->load->view("main", $data);
 	 }
 	 
@@ -145,8 +125,8 @@ class pegawai extends CI_Controller {
 	 function viewTambahPegawai()
 	 {
 			
-			//$halaman['konten'] = $this->load->view('daftar_info_karir',$data_konten,TRUE);
-			$data["konten"] = $this->load->view("form_tambah_pegawai",'', TRUE);
+			$data_konten['pegawai']=$this->pegawai_model->get_unit();
+      $data["konten"] = $this->load->view("form_tambah_pegawai",$data_konten, TRUE);
       $data["menu"] = 'pegawai';
 			$data["sub_menu"] = 'tambah_pegawai';
       $this->load->view('main',$data);

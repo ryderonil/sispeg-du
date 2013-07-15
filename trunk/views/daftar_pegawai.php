@@ -47,7 +47,7 @@
 	<td><?php echo $row->TanggalLahir; ?></td>
   <td align="center">
 	<a href="<?php echo base_url().'index.php/pegawai/detail_pegawai/'.$row->NIB; ?>" title='Detail' class="btn btn4 btn_yellow btn_search radius50" alt="Detail"></a>
-	<a href="<?php echo base_url().'index.php/pegawai/edit_proses/'.$row->NIB; ?>" title='Edit' class="btn btn4 btn_yellow btn_flag" alt="Edit"></a>
+	<a href="<?php echo base_url().'index.php/pegawai/edit_pegawai/'.$row->NIB; ?>" title='Edit' class="btn btn4 btn_yellow btn_flag" alt="Edit"></a>
 	</td>
 	</tr>
 	 <?php
