@@ -48,6 +48,22 @@ class pegawai_model extends CI_Model {
       GROUP BY pegawai.NIB");
 		  return $query; 
 	}  	
+	
+	function get_riwayat()
+	{
+		  $query = $this->db->query(" SELECT * FROM pegawai JOIN riwayatkepegawaian ON pegawai.NIB=riwayatkepegawaian.NIB_Pegawai 
+      JOIN unitpendidikan ON pegawai.Unit=unitpendidikan.ID
+      WHERE Aktif=1");
+		  return $query; 
+	}  	
+
+  function get_daftar_riwayat($nib)
+	{
+		  $query = $this->db->query(" SELECT * FROM pegawai JOIN riwayatkepegawaian ON pegawai.NIB=riwayatkepegawaian.NIB_Pegawai 
+      JOIN unitpendidikan ON pegawai.Unit=unitpendidikan.ID
+      WHERE NIB='".$nib."'");
+		  return $query; 
+	}  	
 
 
   function get_all_in_agendaku($id_agenda,$id_organisasi)

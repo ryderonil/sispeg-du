@@ -17,7 +17,7 @@
                     <?php
 						}
 					?>
-					<li <?php if($sub_menu_terpilih == 'daftar_agenda_all') { echo 'class="current"'; } ?>><a href="<?php echo base_url() ?>index.php/agenda/all">Riwayat Pegawai</a></li>
+					<li <?php if($sub_menu_terpilih == 'daftar_riwayat') { echo 'class="current"'; } ?>><a href="<?php echo base_url() ?>index.php/pegawai/viewRiwayat">Riwayat Kepegawaian</a></li>
                 </ul>
             </li>
             <li <?php if($menu_terpilih == 'user') { echo 'class="current"'; } ?>><a href="#idinventaris" class="inventaris">Data User</a>

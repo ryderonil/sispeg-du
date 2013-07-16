@@ -80,6 +80,25 @@ class pegawai extends CI_Controller {
       $this->load->view("main", $data);
 	 }
 	 
+	 function viewRiwayat()
+	 {
+			
+      $data_konten['pegawai']=$this->pegawai_model->get_riwayat();
+      $data["konten"] = $this->load->view("daftar_riwayat", $data_konten, TRUE);
+			$data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'daftar_riwayat';
+      $this->load->view("main", $data);
+	 }
+	 function daftar_riwayat($nib)
+	 {
+			
+      $data_konten['pegawai']=$this->pegawai_model->get_daftar_riwayat($nib);
+      $data["konten"] = $this->load->view("daftar_riwayat_pegawai", $data_konten, TRUE);
+			$data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'daftar_riwayat';
+      $this->load->view("main", $data);
+	 }
+	 
 	 function delete_agenda($id_agenda)
 	 {
 			
