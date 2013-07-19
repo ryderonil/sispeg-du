@@ -2,34 +2,21 @@
 <div class="pageheader notab">
 <h1 class="pagetitle">Modul Laporan </h1>
 
-<span class="pagedesc">Laporan Pegawai</span> 
-</div>
-
-<div class="contentwrapper"><br />
-	<div class="contenttitle2">
-	<h3>Opsi</h3>
-	</div>
-
-<?php echo form_open('laporan');?>
-	<label>Unit Pendidikan :</label>
-	<span class="field"><select name="id_up" >
-		<option value="0">Semua</option>
-	<?php foreach($daftar_unit_pendidikan as $up){	?>   
-		<option value="<?php echo $up->ID?>"><?php echo $up->NamaUnit?></option>
-	<?php }?>
-	</select></span>
-   	<button class="submit radius2">Tampilkan</button>
-</form>
-
-	
+<span class="pagedesc">Laporan Grafik</span> 
 </div>
 
 <div id="contentwrapper" class="contentwrapper"><br />
 
 
-<div class="contenttitle2">
-<h3>Daftar Pegawai</h3>
-</div>
+<div class="pageheader">
+            <h1 class="pagetitle">Daftar Pegawai</h1>
+            <span class="pagedesc">The content below are loaded using inline data</span>
+            
+            <ul class="hornav">
+                <li class="current"><a href="#default">Per Unit</a></li>
+                <li><a href="#formal">Per Jenis Dinas</a></li>
+            </ul>
+</div><!--pageheader-->
 
 
 <!--contenttitle-->
@@ -94,7 +81,13 @@
                 point:{
                 	events:{
                   		click: function (event) {
-                      		alert(this.name);
+                      		//alert(this.name);
+
+                      		var tabelPegawai = jQuery('#dyntable').dataTable();
+
+
+                      		tabelPegawai.fnFilter( this.name, 4 );
+
                   		}
               		}
                 }
@@ -116,8 +109,8 @@
 	<th class="head0">Nama Pegawai</th>
 	<th class="head0">Jurusan</th>
 	<th class="head1">Tanggal Lahir</th>
-  <th align="center" class="head1">Pilihan</th>
-	</tr>
+	<th class="head1">Unit Kerja</th>
+  	</tr>
 </thead> 
 <tfoot> 
 	<tr>
@@ -125,21 +118,19 @@
 	<th class="head0">Nama Pegawai</th>
 	<th class="head0">Jurusan</th>
 	<th class="head1">Tanggal Lahir</th>
-  <th align="center" class="head1">Pilihan</th>
-	</tr>
+	<th class="head1">Unit Kerja</th>
+  	</tr>
 </tfoot> 
 <tbody>
-	<?php foreach($pegawai->result() as $row){	?>
+	<?php foreach($pegawai->result() as $row){
+	//var_dump($row);echo '<br>';	?>
 	<tr class="gradeA">
 	<td><?php echo $row->NIB; ?></td>
 	<td><?php echo $row->Nama; ?></td>
 	<td><?php echo $row->Jurusan; ?></td>
 	<td><?php echo $row->TanggalLahir; ?></td>
-  <td align="center">
-	<a href="<?php echo base_url().'index.php/pegawai/detail_pegawai/'.$row->NIB; ?>" title='Detail' class="btn btn4 btn_yellow btn_search radius50" alt="Detail"></a>
-	<a href="<?php echo base_url().'index.php/pegawai/edit_pegawai/'.$row->NIB; ?>" title='Edit' class="btn btn4 btn_yellow btn_flag" alt="Edit"></a>
-	</td>
-	</tr>
+	<td><?php echo $row->NamaUnit; ?></td>
+  	</tr>
 	 <?php
 					  } 
 					  ?> 

@@ -11,6 +11,7 @@
 
 jQuery(document).ready(function(){
 
+
 	jQuery('.stdtablecb .checkall').click(function(){
 		var parentTable = jQuery(this).parents('table');										   
 		var ch = parentTable.find('tbody input[type=checkbox]');										 
@@ -123,10 +124,10 @@ jQuery(document).ready(function(){
 	
 	
 	
-	jQuery('#dyntable').dataTable({
+	var tabelPegawai = jQuery('#dyntable').dataTable({
 		"sPaginationType": "full_numbers"
 	});
-	
+
 	jQuery('#dyntable2').dataTable({
 		"sPaginationType": "full_numbers",
 		"aaSortingFixed": [[0,'asc']],
@@ -138,7 +139,7 @@ jQuery(document).ready(function(){
 
 	
 	///// TRANSFORM CHECKBOX AND RADIO BOX USING UNIFORM PLUGIN /////
-	jQuery('input:checkbox,input:radio').uniform();
+	//jQuery('input:checkbox,input:radio').uniform();
 	
 	
 });

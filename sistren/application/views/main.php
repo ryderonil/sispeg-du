@@ -11,7 +11,7 @@
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.jgrowl.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.alerts.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/colorpicker.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.uniform.min.js"></script>
+<!--<script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.uniform.min.js"></script>-->
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.tagsinput.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/charCount.js"></script>
@@ -42,7 +42,7 @@
 		
 		jQuery(".inline").colorbox({inline:true, width: '60%', height: '500px'});
 		
-		jQuery('select, input:checkbox').uniform();
+		//jQuery('select, input:checkbox').uniform();
 	});
 </script>
 
