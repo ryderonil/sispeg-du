@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Sispeg DU</title>
+<title>Sistem Informasi Kepegawaian PPDU</title>
 <link rel="stylesheet" href="<?php echo base_url() ?>css/style.default.css" type="text/css" />
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery-1.7.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery-ui-1.8.16.custom.min.js"></script>
@@ -24,6 +24,9 @@
 <script type="text/javascript" src="<?php echo base_url() ?>js/custom/dashboard.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.colorbox-min.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url() ?>js/highcharts.js"></script>
+
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		// Smart Wizard 	
