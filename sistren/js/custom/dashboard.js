@@ -6,7 +6,7 @@ jQuery(document).ready(function(){
 		jQuery( "#datepickfrom, #datepickto" ).datepicker();
 		
 		///// SLIM SCROLL /////
-		jQuery('#scroll1').slimscroll({
+		jQuery('#scroll1')slimscroll({
 			color: '#666',
 			size: '10px',
 			width: 'auto',

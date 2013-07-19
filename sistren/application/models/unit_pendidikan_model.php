@@ -34,5 +34,11 @@ class unit_pendidikan_model extends CI_Model {
 		  return $query; 
 	}
 	
+	function get_persen_pegawai_byUP(){
+		$query = $this->db->query(" SELECT count(NIB) FROM pegawai 
+      		JOIN unitpendidikan ON pegawai.Unit=unitpendidikan.ID 
+      		GROUP BY unitpendidikan.id");
+	}
+
 }
 ?>
