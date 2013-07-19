@@ -52,11 +52,13 @@
                 plotShadow: false
             },
             title: {
-                text: 'Browser market shares at a specific website, 2010'
+                text: 'Pegawai Pondok Pesantren Darul Ulum, 2013'
             },
             tooltip: {
-        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
-            	percentageDecimals: 1
+            	
+        	    formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(2) +' %';
+                        }
             },
             plotOptions: {
                 pie: {
@@ -67,7 +69,7 @@
                         color: '#000000',
                         connectorColor: '#000000',
                         formatter: function() {
-                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(2) +' %';
                         }
                     }
                 }
@@ -76,18 +78,27 @@
                 type: 'pie',
                 name: 'Browser share',
                 data: [
-                    ['Firefox',   45.0],
-                    ['IE',       26.8],
-                    {
-                        name: 'Chrome',
-                        y: 12.8,
-                        sliced: true,
-                        selected: true
-                    },
-                    ['Safari',    8.5],
-                    ['Opera',     6.2],
-                    ['Others',   0.7]
-                ]
+
+                <?php 
+                	$persen_pegawai_byUP = $persen_pegawai_byUP->result();
+                	$count = count($persen_pegawai_byUP);
+                	$i=1;
+                	foreach($persen_pegawai_byUP as $up){ 
+                		echo '["'.$up->NamaUnit.'",'.$up->jumlah.']';
+                		$i++;
+                		if($i<$count)
+                			echo ',';
+                	} 
+                ?>
+                ],
+                point:{
+                	events:{
+                  		click: function (event) {
+                      		alert(this.name);
+                  		}
+              		}
+                }
+
             }]
         });
 
@@ -118,9 +129,7 @@
 	</tr>
 </tfoot> 
 <tbody>
-	<?php 
-						foreach($pegawai->result() as $row){			
-			 		?>
+	<?php foreach($pegawai->result() as $row){	?>
 	<tr class="gradeA">
 	<td><?php echo $row->NIB; ?></td>
 	<td><?php echo $row->Nama; ?></td>

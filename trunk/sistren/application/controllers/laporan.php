@@ -40,7 +40,8 @@ class laporan extends CI_Controller {
 
 			$data_konten['pegawai']					= $this->unit_pendidikan_model->get_all_pegawai_byUP($id_up);
 			$data_konten['daftar_unit_pendidikan'] 	= $this->unit_pendidikan_model->get_all_unit_pendidikan();
-			
+			$data_konten['persen_pegawai_byUP']		= $this->unit_pendidikan_model->get_persen_pegawai_byUP();
+
 			$data["menu"] 			= 'laporan';
 			$data["sub_menu"] 		= 'daftar_pegawai';
 			$data["konten"] 		= $this->load->view("laporan_pegawai", $data_konten, TRUE);
