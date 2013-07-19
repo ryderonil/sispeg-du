@@ -32,7 +32,7 @@
     jQuery(document).ready(function(){
         jQuery("#id_up").change(function(){
         	var tabelPegawai = jQuery('#dyntable').dataTable();
-    	    tabelPegawai.fnFilter( jQuery(this).val(), 4 );
+    	    tabelPegawai.fnFilter( jQuery(this).val(), 5 );
     	    jQuery("#title_tabel").text("Daftar Pegawai "+jQuery(this).val());
         });
     });
@@ -62,6 +62,7 @@
 	<tr>
 	<th class="head0">NIB</th>
 	<th class="head0">Nama Pegawai</th>
+	<th class="head0">JK</th>
 	<th class="head0">Jurusan</th>
 	<th class="head1">Tanggal Lahir</th>
 	<th class="head1">Unit Kerja</th>
@@ -71,6 +72,7 @@
 	<tr>
 	<th class="head0">NIB</th>
 	<th class="head0">Nama Pegawai</th>
+	<th class="head0">JK</th>
 	<th class="head0">Jurusan</th>
 	<th class="head1">Tanggal Lahir</th>
 	<th class="head1">Unit Kerja</th>
@@ -82,6 +84,7 @@
 	<tr class="gradeA">
 	<td><?php echo $row->NIB; ?></td>
 	<td><?php echo $row->Nama; ?></td>
+	<td><?php echo $row->JenisKelamin=="Perempuan" ? "P": "L"; ?></td>
 	<td><?php echo $row->Jurusan; ?></td>
 	<td><?php echo $row->TanggalLahir; ?></td>
 	<td><?php echo $row->NamaUnit; ?></td>
