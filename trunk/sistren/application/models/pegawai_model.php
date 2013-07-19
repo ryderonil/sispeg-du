@@ -10,13 +10,18 @@ class pegawai_model extends CI_Model {
 	//mengembalikan semua data agenda yang tersimpan di database
 	function get_all_pegawai2()
 	{
-		  $query = $this->db->query(" SELECT * FROM pegawai JOIN pendidikanformalterakhir ON pegawai.NIB=pendidikanformalterakhir.NIB_Pegawai ");
+		  $query = $this->db->query(" SELECT * FROM pegawai 
+      JOIN sertifikasi ON pegawai.NIB=sertifikasi.NIB_Pegawai 
+      JOIN pendidikanformalterakhir ON pegawai.NIB=pendidikanformalterakhir.NIB_Pegawai 
+      JOIN riwayatpendidikanpesantren ON pegawai.NIB=riwayatpendidikanpesantren.NIB_Pegawai 
+      JOIN unitpendidikan ON pegawai.Unit=unitpendidikan.ID 
+      GROUP BY pegawai.NIB");
 		  return $query; 
 	}
 	
 	function get_all_pegawai()
 	{
-		  $query = $this->db->query(" SELECT * FROM pegawai 
+		$query = $this->db->query(" SELECT * FROM pegawai 
       JOIN sertifikasi ON pegawai.NIB=sertifikasi.NIB_Pegawai 
       JOIN pendidikanformalterakhir ON pegawai.NIB=pendidikanformalterakhir.NIB_Pegawai 
       JOIN riwayatpendidikanpesantren ON pegawai.NIB=riwayatpendidikanpesantren.NIB_Pegawai 

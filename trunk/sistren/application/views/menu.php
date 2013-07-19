@@ -36,8 +36,8 @@
 			<li <?php if($menu_terpilih == 'laporan') { echo 'class="current"'; } ?>><a href="#idlaporan" class="arrow">Laporan</a>
             	<span class="arrow"></span>
             	<ul id="idlaporan">
-               		<li <?php if($sub_menu_terpilih == 'laporan_guru') { echo 'class="current"'; } ?>><a href="<?php echo base_url(); ?>index.php/pengelolaan_inventaris/">Laporan Dok</a></li>
-                    <li <?php if($sub_menu_terpilih == 'laporan_pegawai') { echo 'class="current"'; } ?>><a href="<?php echo base_url(); ?>index.php/laporan">Laporan Chart</a></li>
+               		<li <?php if($sub_menu_terpilih == 'laporan_cetak') { echo 'class="current"'; } ?>><a href="<?php echo base_url(); ?>index.php/laporan/laporan_cetak/">Laporan Cetak</a></li>
+                    <li <?php if($sub_menu_terpilih == 'laporan_grafik') { echo 'class="current"'; } ?>><a href="<?php echo base_url(); ?>index.php/laporan">Laporan Grafik</a></li>
                 </ul>
             </li>
         </ul>

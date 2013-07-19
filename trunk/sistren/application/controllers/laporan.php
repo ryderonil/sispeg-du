@@ -49,6 +49,21 @@ class laporan extends CI_Controller {
 			$this->load->view("main", $data);
 	 }
 	 
+	 function laporan_cetak(){
+	 		$id_up = $this->input->post("id_up");
+			if(!isset($id_up))
+				$id_up=0;
+
+			$data_konten['pegawai']					= $this->unit_pendidikan_model->get_all_pegawai_byUP($id_up);
+			$data_konten['daftar_unit_pendidikan'] 	= $this->unit_pendidikan_model->get_all_unit_pendidikan();
+			$data_konten['persen_pegawai_byUP']		= $this->unit_pendidikan_model->get_persen_pegawai_byUP();
+
+			$data["menu"] 			= 'laporan';
+			$data["sub_menu"] 		= 'daftar_pegawai';
+			$data["konten"] 		= $this->load->view("laporan_cetak", $data_konten, TRUE);
+
+			$this->load->view("main", $data);
+	 }
 	 
 } // END user class
 
