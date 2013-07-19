@@ -21,14 +21,15 @@
 <script type="text/javascript" src="<?php echo base_url() ?>js/custom/elements.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/custom/tables.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ?>js/custom/dashboard.js"></script>
+<!--<script type="text/javascript" src="<?php echo base_url() ?>js/custom/dashboard.js"></script>-->
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/plugins/jquery.colorbox-min.js"></script>
 
 <script type="text/javascript" src="<?php echo base_url() ?>js/highcharts.js"></script>
-
 <script type="text/javascript">
+
 	jQuery(document).ready(function(){
+
 		// Smart Wizard 	
   		jQuery('#wizard').smartWizard({onFinish: onFinishCallback});
       	jQuery('#wizard2').smartWizard({onFinish: onFinishCallback});
