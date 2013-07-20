@@ -38,7 +38,8 @@
 </tfoot> 
 <tbody>
 	<?php 
-						foreach($pegawai->result() as $row){			
+						foreach($pegawai->result() as $row){
+           //echo"<pre>"; print_r($row);echo"</pre>";			
 			 		?>
 	<tr class="gradeA">
 	<td><?php echo $row->NIB; ?></td>
@@ -46,10 +47,36 @@
 	<td><?php echo $row->Gelar; ?></td>
 	<td><?php echo $row->TanggalLahir; ?></td>
   <td align="center">
-	<a href="<?php echo base_url().'index.php/pegawai/viewTambahPegawai2/'.$row->NIB; ?>" title='Isi Pendidikan Formal' class="btn btn4 btn_yellow btn_search radius50" alt="Detail"></a>
-	<a href="<?php echo base_url().'index.php/pegawai/viewTambahPegawai3/'.$row->NIB; ?>" title='Isi Pendidikan Pesantren' class="btn btn4 btn_yellow btn_flag" alt="Edit"></a>
-	<a href="<?php echo base_url().'index.php/pegawai/viewTambahPegawai4/'.$row->NIB; ?>" title='Isi Sertifikasi' class="btn btn4 btn_yellow btn_link" alt="Edit"></a>
-  <a href="<?php echo base_url().'index.php/pegawai/viewEdit/'.$row->NIB; ?>" title='Edit Pegawai' class="btn btn4 btn_yellow btn_home" alt="Edit"></a>
+  <?php
+  if ($row->nibformal!=''){
+    $styleFormal = 'style="display:none"';
+  }else{
+    $styleFormal = '';
+  }
+  
+  if ($row->nibpesan!=''){
+    $stylePesan = 'style="display:none"';
+  }else{
+    $stylePesan = '';
+  }
+  
+  if ($row->nibserti!=''){
+    $styleSerti = 'style="display:none"';
+  }else{
+    $styleSerti = '';
+  }
+  
+  if ($row->nibformal!='' && $row->nibserti!='' && $row->nibpesan!=''){
+    $styleEdit = '';
+  }else{
+    $styleEdit = 'style="display:none"';
+  }
+   
+  //if($row->nibserti=='' and $row->nibpesan==''and $row->nibformal==''){?>
+  <a <?php echo $styleSerti; ?> href="<?php echo base_url().'index.php/pegawai/viewTambahPegawai4/'.$row->NIB; ?>" title='Isi Sertifikasi' class="btn btn4 btn_yellow btn_link" alt="Edit"></a>
+  <a <?php echo $styleFormal; ?> href="<?php echo base_url().'index.php/pegawai/viewTambahPegawai2/'.$row->NIB; ?>" title='Isi Pendidikan Formal' class="btn btn4 btn_yellow btn_search radius50" alt="Detail"></a>
+  <a <?php echo $stylePesan; ?> href="<?php echo base_url().'index.php/pegawai/viewTambahPegawai3/'.$row->NIB; ?>" title='Isi Pendidikan Pesantren' class="btn btn4 btn_yellow btn_flag" alt="Edit"></a>
+  <a <?php echo $styleEdit; ?> href="<?php echo base_url().'index.php/pegawai/viewEdit/'.$row->NIB; ?>" title='Edit Pegawai' class="btn btn4 btn_yellow btn_home" alt="Edit"></a>
   
   </td>
 	</tr>
