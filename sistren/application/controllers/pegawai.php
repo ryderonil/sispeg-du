@@ -56,7 +56,7 @@ class pegawai extends CI_Controller {
 			$data_konten['pegawai']=$this->pegawai_model->get_all_pegawai2();
 			$data["menu"] = 'pegawai';
 			$data["sub_menu"] = 'daftar_pegawai';
-		$data["konten"] = $this->load->view("daftar_pegawai_saja", $data_konten, TRUE);
+		  $data["konten"] = $this->load->view("daftar_pegawai_saja", $data_konten, TRUE);
 			$this->load->view("main", $data);}
 	 
 	 

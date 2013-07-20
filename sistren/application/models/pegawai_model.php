@@ -10,8 +10,14 @@ class pegawai_model extends CI_Model {
 	//mengembalikan semua data agenda yang tersimpan di database
 	function get_all_pegawai2()
 	{
-
-		  $query = $this->db->query(" SELECT * FROM pegawai");
+		  $query = $this->db->query("SELECT p.*, f.NIB_pegawai  AS nibformal,  ps.NIB_pegawai AS nibpesan,  s.NIB_pegawai  AS nibserti
+                                FROM pegawai p
+                                LEFT JOIN pendidikanformalterakhir f
+                                  ON p.NIB = f.NIB_Pegawai
+                                LEFT JOIN riwayatpendidikanpesantren ps
+                                  ON p.NIB = ps.NIB_Pegawai
+                                LEFT JOIN sertifikasi s
+                                  ON p.NIB = s.NIB_Pegawai");
 
 		  //$query = $this->db->query(" SELECT * FROM pegawai 
       //JOIN sertifikasi ON pegawai.NIB=sertifikasi.NIB_Pegawai 
@@ -93,6 +99,32 @@ class pegawai_model extends CI_Model {
   function tambahSert($pegawai){
 			$this->db->insert('sertifikasi', $pegawai);
 		}
+		
+		function ambil_satu_pegawai($nib){
+			$this->db->select('*');
+			$this->db->from('pegawai');
+			$this->db->where('pegawai.nib', $nib);
+			$query = $this->db->get();
+		
+			return $query;		
+		}
+	
+	function ambil_satu_pendFormal($nib){
+			$this->db->select('*');
+			$this->db->from('pendidikanformalterakhir');
+			$this->db->where('pendidikanformalterakhir.NIB_Pegawai', $nib);
+			$query = $this->db->get();
+		
+			return $query;		
+		}
+	function ambil_satu_sertifikasi($nib){
+			$this->db->select('*');
+			$this->db->from('sertifikasi');
+			$this->db->where('sertifikasi.NIB_Pegawai', $nib);
+			$query = $this->db->get();
+		
+			return $query;		
+		}
 	// 	
 
 
@@ -102,15 +134,7 @@ class pegawai_model extends CI_Model {
 		  return $query;
   	}
 	
-  function ambil_detail_agenda($id_agenda){
-			$this->db->select('*');
-			$this->db->from('agenda');
-			$this->db->where('agenda.id_agenda', $id_agenda);
-			$query = $this->db->get();
-		
-			return $query;		
-		}
-		
+  	
 		function update_agenda($agenda, $id_agenda_lama){
 			$this->db->where('id_agenda', $id_agenda_lama);
 			$this->db->update('agenda', $agenda); 	
@@ -120,6 +144,8 @@ class pegawai_model extends CI_Model {
 			$this->db->where('id_agenda', $id_agenda);
 			$this->db->delete('agenda'); 
 		}
+		
+		
 	//	mengembalikan n baris data kriteria mulai dari posisi ke-start 
 	function get_kriteria($start,$n)
 	{
