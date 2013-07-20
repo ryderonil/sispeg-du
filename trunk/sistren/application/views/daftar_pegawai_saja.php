@@ -7,7 +7,7 @@
 <!--pageheader-->
 <div id="contentwrapper" class="contentwrapper"><br />
 <div class="contenttitle2">
-<h3>Daftar Pegawai Bersertifikasi</h3>
+<h3>Daftar Keseluruhan Pegawai</h3>
 </div>
 <!--contenttitle-->
 
@@ -22,8 +22,8 @@
 	<tr>
 	<th class="head0">NIB</th>
 	<th class="head0">Nama Pegawai</th>
-	<th class="head0">Jurusan</th>
-	<th class="head1">Tanggal Lahir</th>
+	<th class="head0">Gelar</th>
+  <th class="head1">Tanggal Lahir</th>
   <th align="center" class="head1">Pilihan</th>
 	</tr>
 </thead> 
@@ -31,8 +31,8 @@
 	<tr>
 	<th class="head0">NIB</th>
 	<th class="head0">Nama Pegawai</th>
-	<th class="head0">Jurusan</th>
-	<th class="head1">Tanggal Lahir</th>
+	<th class="head1">Gelar</th>
+  <th class="head1">Tanggal Lahir</th>
   <th align="center" class="head1">Pilihan</th>
 	</tr>
 </tfoot> 
@@ -43,12 +43,15 @@
 	<tr class="gradeA">
 	<td><?php echo $row->NIB; ?></td>
 	<td><?php echo $row->Nama; ?></td>
-	<td><?php echo $row->Jurusan; ?></td>
+	<td><?php echo $row->Gelar; ?></td>
 	<td><?php echo $row->TanggalLahir; ?></td>
   <td align="center">
-	<a href="<?php echo base_url().'index.php/pegawai/detail_pegawai/'.$row->NIB; ?>" title='Detail' class="btn btn4 btn_yellow btn_search radius50" alt="Detail"></a>
-	<a href="<?php echo base_url().'index.php/pegawai/edit_pegawai/'.$row->NIB; ?>" title='Edit' class="btn btn4 btn_yellow btn_flag" alt="Edit"></a>
-	</td>
+	<a href="<?php echo base_url().'index.php/pegawai/viewTambahPegawai2/'.$row->NIB; ?>" title='Isi Pendidikan Formal' class="btn btn4 btn_yellow btn_search radius50" alt="Detail"></a>
+	<a href="<?php echo base_url().'index.php/pegawai/viewTambahPegawai3/'.$row->NIB; ?>" title='Isi Pendidikan Pesantren' class="btn btn4 btn_yellow btn_flag" alt="Edit"></a>
+	<a href="<?php echo base_url().'index.php/pegawai/viewTambahPegawai4/'.$row->NIB; ?>" title='Isi Sertifikasi' class="btn btn4 btn_yellow btn_link" alt="Edit"></a>
+  <a href="<?php echo base_url().'index.php/pegawai/viewEdit/'.$row->NIB; ?>" title='Edit Pegawai' class="btn btn4 btn_yellow btn_home" alt="Edit"></a>
+  
+  </td>
 	</tr>
 	 <?php
 					  } 

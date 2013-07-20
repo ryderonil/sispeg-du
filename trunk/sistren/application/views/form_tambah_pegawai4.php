@@ -4,16 +4,16 @@
             <span class="pagedesc">The content below are loaded using inline data</span>
             
             <ul class="hornav">
-                <li class="current"><a href="#default">Pegawai</a></li>
+                <li><a href="#default">Pegawai</a></li>
                 <li><a href="#formal">Pendidikan Formal</a></li>
                 <li><a href="#pesantren">Pesantren</a></li>
-                <li><a href="#sertifikasi">Sertifikasi</a></li>
+                <li class="current"><a href="#sertifikasi">Sertifikasi</a></li>
             </ul>
         </div><!--pageheader-->
         
         <div id="contentwrapper" class="contentwrapper">
         
-        	<div id="default" class="subcontent">
+        	<div id="default" class="subcontent"  style="display: none">
             
                     <form class="stdform stdform2" method="post" action="<?php echo base_url() ?>index.php/pegawai/tambahPegawai">
                     	<p>
@@ -236,6 +236,7 @@
                             <input type="reset" class="reset radius2" value="Reset Button" />
                         </p>
                     
+                    
             </form>                       
           </div><!-- #formal -->
             
@@ -243,23 +244,16 @@
              <form class="stdform stdform2" method="post" action="#">
                     	<p>
                         	<label>Nama Pesantren</label>
-                            <span class="field"><input type="text" name="nama_pesantren"  class="longinput"/>
-                            </span>
+                            <span class="field"><input type="text" name="nama_pesantren"  class="longinput"/></span>
                         </p>
                       <p>
                         	<label>Alamat Pesantren</label>
-                            <span class="field"><textarea cols="80" rows="5" name="alamat_pes" id="location2" class="longinput"></textarea></span>
-                        </p>
+                            <span class="field"><input type="text" name="alamat_pesantren"  class="longinput"/></span>
+                        </p> 
                      <p>
                         	<label>Lama Pendidikan</label>
-                            <span class="field"><input type="text" name="lama_pendidikan"  class="smallinput" /> tahun</span>
+                            <span class="field"><input type="text" name="lama_pendidikan"  class="smallinput" /></span>
                         </p>
-                        <p>
-                        	<label>Tahun Mulai dan Selesai</label>
-                            <span class="field"><input type="text" name="mulai"  class="smallinput" /> s/d
-                            <input type="text" name="selesai"  class="smallinput" /></span>
-                        </p>
-                    
                       <p class="stdformbutton">
                         	<button class="submit radius2">Tambah</button>
                             <input type="reset" class="reset radius2" value="Reset Button" />
@@ -269,12 +263,14 @@
                    
                     
           </div><!--#pesantren-->
-         <div id="sertifikasi" class="subcontent" style="display: none">
-             <form class="stdform stdform2" method="post" action="#">
-                    		<p>
+         <div id="sertifikasi" class="subcontent">
+            <?php foreach($pegawai->result() as $row){			
+			 		?>   
+             <form class="stdform stdform2" method="post" action="<?php echo base_url() ?>index.php/pegawai/tambahSertifikasi">
+                    	<p>
                         	<label>Bidang Studi</label>
                             <span class="field"><input type="text" name="bidang_studi"  class="longinput"/>
-                            </span>
+                            <input type="hidden" name="nib_pegawai"  value="<?php echo $row->NIB?>"/></span>
                         </p>
                        <p>
                           <label>Tanggal Sertifikasi</label>
@@ -297,7 +293,7 @@
                             <input type="reset" class="reset radius2" value="Reset Button" />
                         </p>
                     
-            </form>
+            </form><?php }?>
                                                    
           </div>   
         </div><!--contentwrapper-->

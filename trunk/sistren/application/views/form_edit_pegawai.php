@@ -12,38 +12,36 @@
         </div><!--pageheader-->
         
         <div id="contentwrapper" class="contentwrapper">
-        
+        <?php foreach($pegawai->result() as $row){			
+			 		?>
         	<div id="default" class="subcontent">
             
                     <form class="stdform stdform2" method="post" action="<?php echo base_url() ?>index.php/pegawai/tambahPegawai">
                     	<p>
                         	<label>NIB</label>
-                            <span class="field"><input type="text" name="nib" class="smallinput" /></span>
+                            <span class="field"><input type="text" name="nib" class="smallinput" value="<?php echo $row->NIB?>" /></span>
                         </p>
                         
                         <p>
                         	<label>Nama Lengkap</label>
-                            <span class="field"><input type="text" name="nama"  class="longinput" /></span>
+                            <span class="field"><input type="text" name="nama"  class="longinput" value="<?php echo $row->Nama?>"/></span>
                         </p>
                         
                         <p>
                         	<label>Nomor KTP</label>
-                            <span class="field"><input type="text" name="nomor_ktp" class="longinput" /></span>
+                            <span class="field"><input type="text" name="nomor_ktp" class="longinput" value="<?php echo $row->NoKtp?>"/></span>
                         </p>
                         
                         <p>
-                        	<label>Alamat <small>Alamat saat ini.</small></label>
-                            <span class="field"><textarea cols="80" rows="5" name="alamat" id="location2" class="longinput"></textarea></span>
+                        	<label>Alamat</label>
+                            <span class="field"><input type="text" name="alamat" class="longinput" value="<?php echo $row->AlamatRumah?>"/></span>
                         </p>
-                    
+                        
                         <p>
                         	<label>Unit Pendidikan</label>
                             <span class="field"><select name="unit">
-                            	 <?php 
-						foreach($pegawai->result() as $row){			
-			 		?>   
+                            
                               <option value="<?php echo $row->ID?>"><?php echo $row->NamaUnit?></option>
-                      <?php }?>
                                 </select></span>
                         </p>
                             <p>
@@ -59,15 +57,15 @@
                         </p>
                        <p>
                         	<label>Gelar</label>
-                            <span class="field"><input type="text" name="gelar" class="smallinput" /></span>
+                            <span class="field"><input type="text" name="gelar" class="smallinput" value="<?php echo $row->Gelar?>"/></span>
                         </p>
                         <p>
                         	<label>Tempat Lahir</label>
-                            <span class="field"><input type="text" name="tempat_lahir" class="smallinput" /></span>
+                            <span class="field"><input type="text" name="tempat_lahir" class="smallinput" value="<?php echo $row->TempatLahir?>"/></span>
                         </p>
                         <p>
                         <label for="date">Tanggal Lahir</label>
-                        <span class="field"><input type="text" id="datepickfrom" name="tanggal_lahir"/></span>
+                        <span class="field"><input type="text" id="datepickfrom" name="tanggal_lahir" value="<?php echo $row->TanggalLahir?>"/></span>
                         </p>
                         
                         <p>
@@ -148,7 +146,7 @@
                         
                         
                         <p class="stdformbutton">
-                        	  <button class="submit radius2">Tambah</button>
+                        	  <button class="submit radius2">Update</button>
                             <input type="reset" class="reset radius2" value="Reset Button" />
                         </p>
                     </form>
@@ -160,7 +158,7 @@
                     	<p>
                         	<label>Pendidikan Terakhir</label>
                             <span class="field"><input type="text" name="pend_terakhir"  class="smallinput" />
-                     </span>
+                     <input type="hidden" name="nib_pegawai2"  value="<?php echo $row->NIB?>"/></span>
                         </p>   
                       <p>
                         	<label>Tanggal Ijazah</label>
@@ -232,9 +230,10 @@
                         </p>
                          
                         <p class="stdformbutton">
-                        	<button class="submit radius2">Tambah</button>
+                        	<button class="submit radius2">Update</button>
                             <input type="reset" class="reset radius2" value="Reset Button" />
                         </p>
+                    
                     
             </form>                       
           </div><!-- #formal -->
@@ -244,24 +243,18 @@
                     	<p>
                         	<label>Nama Pesantren</label>
                             <span class="field"><input type="text" name="nama_pesantren"  class="longinput"/>
-                            </span>
+                            <input type="hidden" name="nib_pegawai3"  value="<?php echo $row->NIB?>"/></span>
                         </p>
                       <p>
                         	<label>Alamat Pesantren</label>
-                            <span class="field"><textarea cols="80" rows="5" name="alamat_pes" id="location2" class="longinput"></textarea></span>
-                        </p>
+                            <span class="field"><input type="text" name="alamat_pesantren"  class="longinput"/></span>
+                        </p> 
                      <p>
                         	<label>Lama Pendidikan</label>
-                            <span class="field"><input type="text" name="lama_pendidikan"  class="smallinput" /> tahun</span>
+                            <span class="field"><input type="text" name="lama_pendidikan"  class="smallinput" /></span>
                         </p>
-                        <p>
-                        	<label>Tahun Mulai dan Selesai</label>
-                            <span class="field"><input type="text" name="mulai"  class="smallinput" /> s/d
-                            <input type="text" name="selesai"  class="smallinput" /></span>
-                        </p>
-                    
                       <p class="stdformbutton">
-                        	<button class="submit radius2">Tambah</button>
+                        	<button class="submit radius2">Update</button>
                             <input type="reset" class="reset radius2" value="Reset Button" />
                         </p>
                     
@@ -269,12 +262,13 @@
                    
                     
           </div><!--#pesantren-->
-         <div id="sertifikasi" class="subcontent" style="display: none">
-             <form class="stdform stdform2" method="post" action="#">
-                    		<p>
+         <div id="sertifikasi" class="subcontent"  style="display: none">
+               
+             <form class="stdform stdform2" method="post" action="<?php echo base_url() ?>index.php/pegawai/tambahSertifikasi">
+                    	<p>
                         	<label>Bidang Studi</label>
                             <span class="field"><input type="text" name="bidang_studi"  class="longinput"/>
-                            </span>
+                            <input type="hidden" name="nib_pegawai4"  value="<?php echo $row->NIB?>"/></span>
                         </p>
                        <p>
                           <label>Tanggal Sertifikasi</label>
@@ -293,13 +287,13 @@
                             <span class="field"><input type="text" name="unit_sert"  class="smallinput"/></span>
                         </p>
                       <p class="stdformbutton">
-                        	<button class="submit radius2">Tambah</button>
+                        	<button class="submit radius2">Update</button>
                             <input type="reset" class="reset radius2" value="Reset Button" />
                         </p>
                     
             </form>
                                                    
-          </div>   
+          </div><?php }?>   
         </div><!--contentwrapper-->
         
 	</div><!-- centercontent -->

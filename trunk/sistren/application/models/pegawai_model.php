@@ -10,12 +10,22 @@ class pegawai_model extends CI_Model {
 	//mengembalikan semua data agenda yang tersimpan di database
 	function get_all_pegawai2()
 	{
+<<<<<<< .mine
+		  $query = $this->db->query(" SELECT * FROM pegawai");
+=======
 		  $query = $this->db->query(" SELECT * FROM pegawai 
       JOIN sertifikasi ON pegawai.NIB=sertifikasi.NIB_Pegawai 
       JOIN pendidikanformalterakhir ON pegawai.NIB=pendidikanformalterakhir.NIB_Pegawai 
       JOIN riwayatpendidikanpesantren ON pegawai.NIB=riwayatpendidikanpesantren.NIB_Pegawai 
       JOIN unitpendidikan ON pegawai.Unit=unitpendidikan.ID 
       GROUP BY pegawai.NIB");
+>>>>>>> .r17
+		  return $query; 
+	}
+	
+  function get_pegawai_detail($nib)
+	{
+		  $query = $this->db->query(" SELECT * FROM pegawai WHERE NIB = '".$nib."'");
 		  return $query; 
 	}
 	
@@ -68,7 +78,23 @@ class pegawai_model extends CI_Model {
       JOIN unitpendidikan ON pegawai.Unit=unitpendidikan.ID
       WHERE NIB='".$nib."'");
 		  return $query; 
-	}  	
+	} 
+  
+  function tambahPegawai($pegawai){
+			$this->db->insert('pegawai', $pegawai);
+		}
+		
+	function tambahPendFormal($pegawai){
+			$this->db->insert('pendidikanformalterakhir', $pegawai);
+		}
+	
+	function tambahPendPes($pegawai){
+			$this->db->insert('riwayatpendidikanpesantren', $pegawai);
+		}
+  function tambahSert($pegawai){
+			$this->db->insert('sertifikasi', $pegawai);
+		}
+	// 	
 
 
   function get_all_in_agendaku($id_agenda,$id_organisasi)
@@ -95,7 +121,7 @@ class pegawai_model extends CI_Model {
 			$this->db->where('id_agenda', $id_agenda);
 			$this->db->delete('agenda'); 
 		}
-	//mengembalikan n baris data kriteria mulai dari posisi ke-start 
+	//	mengembalikan n baris data kriteria mulai dari posisi ke-start 
 	function get_kriteria($start,$n)
 	{
 		$query = $this->db->query("SELECT * FROM kriteria ORDER BY idkriteria LIMIT ".$start.",".$n);

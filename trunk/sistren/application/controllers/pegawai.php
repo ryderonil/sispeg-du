@@ -37,7 +37,7 @@ class pegawai extends CI_Controller {
 	 {
 			$data_konten['pegawai']=$this->pegawai_model->get_all_pegawai();
 			$data["menu"] = 'pegawai';
-			$data["sub_menu"] = 'daftar_pegawai';
+			$data["sub_menu"] = 'daftar_pegawai_sert';
 		$data["konten"] = $this->load->view("daftar_pegawai", $data_konten, TRUE);
 			$this->load->view("main", $data);
 	 }
@@ -53,12 +53,11 @@ class pegawai extends CI_Controller {
 	 
 	 function all()
 	 {
-			$data_konten['agenda']=$this->agenda_model->get_all_in_agenda($this->session->userdata('id_organisasi'));
-      $data["menu"] = 'agenda';
-			$data["sub_menu"] = 'daftar_agenda_all';
-		  $data["konten"] = $this->load->view("daftar_agenda_all", $data_konten, TRUE);
-			$this->load->view("main", $data);
-	 }
+			$data_konten['pegawai']=$this->pegawai_model->get_all_pegawai2();
+			$data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'daftar_pegawai';
+		$data["konten"] = $this->load->view("daftar_pegawai_saja", $data_konten, TRUE);
+			$this->load->view("main", $data);}
 	 
 	 
 	 function detail_pegawai($nib)
@@ -96,6 +95,16 @@ class pegawai extends CI_Controller {
       $data["konten"] = $this->load->view("daftar_riwayat_pegawai", $data_konten, TRUE);
 			$data["menu"] = 'pegawai';
 			$data["sub_menu"] = 'daftar_riwayat';
+      $this->load->view("main", $data);
+	 }
+	 
+   function viewEdit($nib)
+	 {
+			
+      $data_konten['pegawai']=$this->pegawai_model->get_detail_pegawai($nib);
+      $data["konten"] = $this->load->view("form_edit_pegawai", $data_konten, TRUE);
+			$data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'daftar_pegawai';
       $this->load->view("main", $data);
 	 }
 	 
@@ -150,7 +159,182 @@ class pegawai extends CI_Controller {
 			$data["sub_menu"] = 'tambah_pegawai';
       $this->load->view('main',$data);
 	 }
-	 function tambahAgenda()
+	 function viewTambahPegawai2($nib)
+	 {
+		  
+			$data_konten['pegawai']=$this->pegawai_model->get_pegawai_detail($nib);
+      $data["konten"] = $this->load->view("form_tambah_pegawai2",$data_konten, TRUE);
+      $data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'tambah_pegawai';
+      $this->load->view('main',$data);
+	 }
+	 function viewTambahPegawai3($nib)
+	 {
+		  
+			$data_konten['pegawai']=$this->pegawai_model->get_pegawai_detail($nib);
+      $data["konten"] = $this->load->view("form_tambah_pegawai3",$data_konten, TRUE);
+      $data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'tambah_pegawai';
+      $this->load->view('main',$data);
+	 }
+	 function viewTambahPegawai4($nib)
+	 {
+		  
+			$data_konten['pegawai']=$this->pegawai_model->get_pegawai_detail($nib);
+      $data["konten"] = $this->load->view("form_tambah_pegawai4",$data_konten, TRUE);
+      $data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'tambah_pegawai';
+      $this->load->view('main',$data);
+	 }
+	 function tambahPegawai()
+	{	
+      $tanggal_mulai = explode('/', $this->input->post('tanggal_lahir'));
+			$tanggal_mulai2 = $tanggal_mulai[2].'-'.$tanggal_mulai[0].'-'.$tanggal_mulai[1];
+      $data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'tambah_pegawai';
+      $pegawai = array('NIB' 		=> $this->input->post('nib'),
+						'JenisPegawai' 		=> $this->input->post('jenis_pegawai'),
+						'NoKtp'  		=> $this->input->post('nomor_ktp'),
+						'Nama'	=> $this->input->post('nama'),
+						'Gelar'  		=> $this->input->post('gelar'),
+						'TempatLahir'	=> $this->input->post('tempat_lahir'),
+            'TanggalLahir' 		=> $tanggal_mulai2,
+						'JenisKelamin'  		=> $this->input->post('jenis_kelamin'),
+						'StatusPerkawinan'	=> $this->input->post('status_kawin'),
+						'NamaPasangan' 		=> $this->input->post('nama_pasangan'),
+						'JumlahAnak'  		=> $this->input->post('jml_anak'),
+						'AlamatRumah'		=> $this->session->userdata('alamat'),
+						'GolonganDarah'  		=> $this->input->post('gol_darah'),
+						'Telepon'	=> $this->input->post('telepon'),
+						'Email' 		=> $this->input->post('email'),
+						'NoKarpeg'  		=> $this->input->post('no_karpeg'),
+						'NoTaspen'  		=> $this->input->post('no_taspen'),
+						'Npwp'		=> $this->session->userdata('npwp'),
+						'Foto'  		=> 5,
+						'Unit'	=> $this->input->post('unit'),
+						'Nuptk' 		=> $this->input->post('nuptk'),
+						'Nip'  		=> $this->input->post('nip'),
+						'KodePos'	=> $this->input->post('kodepos'),
+						'NamaAyah' 		=> $this->input->post('ayah'),
+						'NamaIbu'  		=> $this->input->post('ibu')	
+						);
+		
+		//if($this->cek_validasi() == true)
+		//{
+			$this->pegawai_model->tambahPegawai($pegawai);
+			redirect('pegawai/all');
+		//}
+		//else{
+			//$this->load->view('tambah_agenda');
+	//	}
+	}
+	/*  `NIB_Pegawai`,
+             `PendidikanTerakhir`,
+             `TanggalIjasah`,
+             `TanggalLulus`,
+             `AktaMengajar`,
+             `NoIjasah`,
+             `Fakultas`,
+             `Jurusan`,
+             `JenisLembaga`,
+             `KategoriLembaga`,
+             `StatusPerguruanTinggi`,
+             `NamaLembagaPendidikan`,
+             `AlamatLembagaPendidikan`,
+             `NamaPimpinan`,
+             `Ipk`)*/
+	
+  function tambahPendFormal()
+	{	
+      $data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'tambah_pegawai';
+      $pegawai = array('NIB_Pegawai' 		=> $this->input->post('nib_pegawai'),
+						'PendidikanTerakhir' 		=> $this->input->post('pend_terakhir'),
+						'TanggalIjasah'  		=> $this->input->post('tanggal_ijazah'),
+						'TanggalLulus'	=> $this->input->post('tanggal_ijazah'),
+						'AktaMengajar'  		=> $this->input->post('akta_mengajar'),
+						'NoIjasah'  		=> $this->input->post('no_ijazah'),
+            'Fakultas'	=> $this->input->post('fakultas'),
+            'Jurusan' 		=> $this->input->post('jurusan'),
+						'JenisLembaga'  		=> $this->input->post('jenis_lembaga'),
+						'KategoriLembaga'	=> $this->input->post('kat_lembaga'),
+						'StatusPerguruanTinggi' 		=> $this->input->post('stat_per'),
+						'NamaLembagaPendidikan'  		=> $this->input->post('nama_lem'),
+						'AlamatLembagaPendidikan'		=> $this->session->userdata('alamat_lem'),
+						'NamaPimpinan'  		=> $this->input->post('nama_pim'),
+						'Ipk'	=> $this->input->post('ipk')
+						);
+		
+		//if($this->cek_validasi() == true)
+		//{
+			$this->pegawai_model->tambahPendFormal($pegawai);
+			redirect('pegawai/all');
+		//}
+		//else{
+			//$this->load->view('tambah_agenda');
+	//	}
+	}
+	 /*`NIB_Pegawai`,
+             `NamaPesantren`,
+             `AlamatPesantren`,
+             `LamaPendidikan`,
+             `TahunMulai`,
+             `TahunSelesai
+   */
+   function tambahPendPes()
+	{	
+      $data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'tambah_pegawai';
+      $pegawai = array('NIB_Pegawai' 		=> $this->input->post('nib_pegawai'),
+						'NamaPesantren' 		=> $this->input->post('nama_pesantren'),
+						'AlamatPesantren'  		=> $this->input->post('alamat_pes'),
+						'LamaPendidikan'	=> $this->input->post('lama_pendidikan'),
+						'TahunMulai'  		=> $this->input->post('mulai'),
+						'TahunSelesai'  		=> $this->input->post('selesai')
+            );
+		
+		//if($this->cek_validasi() == true)
+		//{
+			$this->pegawai_model->tambahPendPes($pegawai);
+			redirect('pegawai/all');
+		//}
+		//else{
+			//$this->load->view('tambah_agenda');
+	//	}
+	}
+	
+	/*
+  NIB_Pegawai`,
+             `BidangStudi`,
+             `TanggalSertifikasi`,
+             `NoSertifikasi`,
+             `NoRegistrasiGuru`,
+             `UnitTempatSertifikasi`*/
+   
+   function tambahSertifikasi()
+	{	
+      $data["menu"] = 'pegawai';
+			$data["sub_menu"] = 'tambah_pegawai';
+      $pegawai = array('NIB_Pegawai' 		=> $this->input->post('nib_pegawai'),
+						'BidangStudi' 		=> $this->input->post('bidang_studi'),
+						'TanggalSertifikasi'  		=> $this->input->post('tgl_sert'),
+						'NoSertifikasi'	=> $this->input->post('nomor_sert'),
+						'NoRegistrasiGuru'  		=> $this->input->post('nomor_reg'),
+						'UnitTempatSertifikasi'  		=> $this->input->post('unit_sert')
+            );
+		
+		//if($this->cek_validasi() == true)
+		//{
+			$this->pegawai_model->tambahSert($pegawai);
+			redirect('pegawai/all');
+		//}
+		//else{
+			//$this->load->view('tambah_agenda');
+	//	}
+	}
+   
+   
+   function tambahAgenda()
 	{	
       $tanggal_mulai = explode('/', $this->input->post('tanggal_mulai'));
 			$tanggal_mulai2 = $tanggal_mulai[2].'-'.$tanggal_mulai[0].'-'.$tanggal_mulai[1];
