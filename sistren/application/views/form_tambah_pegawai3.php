@@ -4,16 +4,16 @@
             <span class="pagedesc">The content below are loaded using inline data</span>
             
             <ul class="hornav">
-                <li class="current"><a href="#default">Pegawai</a></li>
+                <li><a href="#default">Pegawai</a></li>
                 <li><a href="#formal">Pendidikan Formal</a></li>
-                <li><a href="#pesantren">Pesantren</a></li>
+                <li class="current"><a href="#pesantren">Pesantren</a></li>
                 <li><a href="#sertifikasi">Sertifikasi</a></li>
             </ul>
         </div><!--pageheader-->
         
         <div id="contentwrapper" class="contentwrapper">
         
-        	<div id="default" class="subcontent">
+        	<div id="default" class="subcontent"  style="display: none">
             
                     <form class="stdform stdform2" method="post" action="<?php echo base_url() ?>index.php/pegawai/tambahPegawai">
                     	<p>
@@ -236,15 +236,18 @@
                             <input type="reset" class="reset radius2" value="Reset Button" />
                         </p>
                     
+                    
             </form>                       
           </div><!-- #formal -->
             
-          <div id="pesantren" class="subcontent" style="display: none">
-             <form class="stdform stdform2" method="post" action="#">
+          <div id="pesantren" class="subcontent">
+          <?php foreach($pegawai->result() as $row){			
+			 		?>   
+             <form class="stdform stdform2" method="post" action="<?php echo base_url() ?>index.php/pegawai/tambahPendPes">
                     	<p>
                         	<label>Nama Pesantren</label>
                             <span class="field"><input type="text" name="nama_pesantren"  class="longinput"/>
-                            </span>
+                            <input type="hidden" name="nib_pegawai"  value="<?php echo $row->NIB?>"/></span>
                         </p>
                       <p>
                         	<label>Alamat Pesantren</label>
@@ -265,16 +268,16 @@
                             <input type="reset" class="reset radius2" value="Reset Button" />
                         </p>
                     
-            </form>
+            </form><?php }?> 
                    
                     
           </div><!--#pesantren-->
          <div id="sertifikasi" class="subcontent" style="display: none">
              <form class="stdform stdform2" method="post" action="#">
-                    		<p>
+                    	<p>
                         	<label>Bidang Studi</label>
                             <span class="field"><input type="text" name="bidang_studi"  class="longinput"/>
-                            </span>
+                           </span>
                         </p>
                        <p>
                           <label>Tanggal Sertifikasi</label>

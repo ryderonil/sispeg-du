@@ -9,7 +9,8 @@
         	<li <?php if($menu_terpilih == 'pegawai') { echo 'class="current"'; } ?>><a href="#agenda" class="arrow">Pegawai</a>
             	<span class="arrow"></span>
             	<ul id="agenda">
-               		<li <?php if($sub_menu_terpilih == 'daftar_pegawai') { echo 'class="current"'; } ?>><a href="<?php echo base_url() ?>index.php/pegawai">Daftar Pegawai</a></li>
+               		<li <?php if($sub_menu_terpilih == 'daftar_pegawai') { echo 'class="current"'; } ?>><a href="<?php echo base_url() ?>index.php/pegawai/all">Daftar Pegawai Keseluruhan</a></li>
+                   <li <?php if($sub_menu_terpilih == 'daftar_pegawai_sert') { echo 'class="current"'; } ?>><a href="<?php echo base_url() ?>index.php/pegawai">Daftar Pegawai Sertifikasi</a></li>
                     <?php 		
 						if($role_jabatan == '2' || $role_jabatan == '4'){
 					?>
