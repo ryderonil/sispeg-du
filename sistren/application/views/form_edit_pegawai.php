@@ -33,8 +33,8 @@
                         </p>
                         
                         <p>
-                        	<label>Alamat</label>
-                            <span class="field"><input type="text" name="alamat" class="longinput" value="<?php echo $row->AlamatRumah?>"/></span>
+                        	<label>Alamat <small>Alamat saat ini.</small></label>
+                            <span class="field"><textarea cols="80" rows="5" name="alamat" id="location2" class="longinput"><?php echo $row->AlamatRumah?></textarea></span>
                         </p>
                         
                         <p>
