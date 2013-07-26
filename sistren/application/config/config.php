@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/sispeg-du/';
+$config['base_url']	= 'http://localhost/sistren/';
 
 /*
 |--------------------------------------------------------------------------
