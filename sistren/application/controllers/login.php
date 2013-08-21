@@ -55,7 +55,8 @@ class login extends CI_Controller {
                     'nama'	  => $user->row()->nama_anggota,
 					'id_organisasi' => $user->row()->id_organisasi,
 					'id_jabatan' => $user->row()->id_jabatan,
-					'nama_jabatan' => $user->row()->NamaJabatan
+					'nama_jabatan' => $user->row()->NamaJabatan,
+					'id_role' => $user->row()->id_role
                      //'id_user' => $row->id_user
 									//id_user itu harusnya id_anggota, pengambilan setelah $row-> itu berdasarkan nama kolom yang mau diatmbil di tabel database
                 );
